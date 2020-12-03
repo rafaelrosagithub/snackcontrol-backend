@@ -1,0 +1,38 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = require("express");
+var stock_1 = __importDefault(require("./stock"));
+var user_1 = __importDefault(require("./user"));
+var session_1 = __importDefault(require("./session"));
+var client_1 = __importDefault(require("./client"));
+var school_1 = __importDefault(require("./school"));
+var provider_1 = __importDefault(require("./provider"));
+var product_1 = __importDefault(require("./product"));
+var bidding_1 = __importDefault(require("./bidding"));
+var order_1 = __importDefault(require("./order"));
+var TasksController_1 = require("../controllers/TasksController");
+var routes = express_1.Router();
+//const prefixRoutes = "/api/v1";
+routes.get("/", function (request, response) {
+    return response.json({ message: "Teste api controle merenda..." });
+});
+routes.get('/tasks', TasksController_1.getTasks);
+routes.get('/tasks/:id', TasksController_1.getTask);
+routes.post('/tasks', TasksController_1.saveTask);
+routes.put('/tasks/:id', TasksController_1.updateTask);
+routes.use("/users", user_1.default);
+routes.use("/sessions", session_1.default);
+routes.use("/clients", client_1.default);
+routes.use("/providers", provider_1.default);
+routes.use("/school", school_1.default);
+routes.use("/stock", stock_1.default);
+routes.use("/order", order_1.default);
+routes.use("/product", product_1.default);
+routes.use("/bidding", bidding_1.default);
+routes.use("/product/:id", TasksController_1.finishedProduct);
+routes.patch('/providers/:id', TasksController_1.finishedProvider);
+routes.patch('/clients/:id', TasksController_1.finishedProvider);
+exports.default = routes;

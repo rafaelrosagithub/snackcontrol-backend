@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { Unique } from "typeorm";
 import UserRepository from "../repositories/UserRepository";
 import CreateUserService from "../services/CreateUserService";
 import EnableUserService from "../services/EnableUserService";
@@ -22,7 +23,7 @@ class UserContoller {
             telephone
         });
 
-        delete user.password;
+            delete user.password;
 
         return response.json(user);
     }

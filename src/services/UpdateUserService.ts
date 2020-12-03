@@ -23,7 +23,6 @@ class UpdateUserService {
         id,
         name,
         email,
-        cpf,
         telephone
     }: IRequest): Promise<User> {
         const user = await this.userRepository.findById(id);

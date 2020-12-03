@@ -103,18 +103,6 @@ class ProviderController {
         return response.json(provider);
     }
 
-    public async destroy(
-        request: Request,
-        response: Response
-    ): Promise<Response> {
-        const { id } = request.params;
-        const providerRepository = new ProviderRepository();
-        const destroyProvider = new DeleteClientService(providerRepository);
-
-        await destroyProvider.execute(id);
-
-        return response.status(204).send();
-    }
 }
 
 export default ProviderController;
